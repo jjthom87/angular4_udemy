@@ -1,0 +1,13 @@
+"use strict";
+exports.__esModule = true;
+var like_class_1 = require("./like_class");
+var user_class_1 = require("./user_class");
+var jared = new user_class_1.User(1, "Jared");
+var joey = new user_class_1.User(2, "Joey");
+var jimmy = new user_class_1.User(3, "Jimmy");
+var jareds_comment = new like_class_1.Like(0, []);
+jareds_comment.likeEvent(jimmy);
+jareds_comment.likeEvent(joey);
+jareds_comment.likeEvent(jimmy);
+jareds_comment.likeEvent(jared);
+console.log(jareds_comment);
