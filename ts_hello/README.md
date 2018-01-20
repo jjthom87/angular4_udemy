@@ -1,0 +1,3 @@
+# Typescript
+
+```tsc main.ts```
