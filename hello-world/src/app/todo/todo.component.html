@@ -1,3 +1,19 @@
-<p>
-  todo works!
-</p>
+<form (submit)="onSubmitTodo($event)">
+	<label>ToDo Input</label><br>
+	<input 
+		ngModel
+		id="todo"
+		name="todo"
+		#todo="ngModel"
+		class="form-group" 
+		(change)="log(todo)" 
+		type="text"/>
+	<input class="btn btn-primary" type="submit"/>
+</form>
+<ul class="well">
+	<li *ngFor="let todo of todos">
+		<span (click)="onStrikeThrough($event)">{{todo.id}}: {{todo.todo}}</span>
+		<button class="btn btn-danger" (click)="onDelete(todo.id)">x</button>
+	</li>
+
+</ul>

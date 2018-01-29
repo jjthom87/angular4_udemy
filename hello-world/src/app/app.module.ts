@@ -13,6 +13,8 @@ import { AuthorsService } from './authors.service';
 import { TodoComponent } from './todo/todo.component';
 
 import { AppRouter } from './app.routing';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { AppRouter } from './app.routing';
     AuthorsComponent,
     TodoComponent
   ],
-  imports: [BrowserModule, AppRouter],
+  imports: [BrowserModule, AppRouter, FormsModule, ReactiveFormsModule],
   providers: [CoursesService, AuthorsService],
   bootstrap: [AppComponent],
   exports : [RouterModule]
