@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -24,7 +25,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
     AuthorsComponent,
     TodoComponent
   ],
-  imports: [BrowserModule, AppRouter, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRouter, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [CoursesService, AuthorsService],
   bootstrap: [AppComponent],
   exports : [RouterModule]

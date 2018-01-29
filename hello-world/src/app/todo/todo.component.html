@@ -12,8 +12,7 @@
 </form>
 <ul class="well">
 	<li *ngFor="let todo of todos; let i = index">
-		<span (click)="onStrikeThrough($event)">{{i + 1}}: {{todo.todo}}</span>
+		<span (click)="onStrikeThrough($event)">{{i + 1}}: {{todo.message}}</span>
 		<button class="btn btn-danger" (click)="onDelete(todo.id)">x</button>
 	</li>
-
 </ul>

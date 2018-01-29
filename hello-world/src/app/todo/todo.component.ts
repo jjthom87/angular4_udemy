@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Injectable, Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
+
+@Injectable()
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   todos = []
   striked = ''
@@ -30,10 +33,17 @@ export class TodoComponent implements OnInit {
   }
 
   log(todo){
-  	this.todos.push({id: this.todos.length + 1, todo:todo.value})
+  	this.todos.push({id: this.todos.length + 1, message:todo.value})
   }
 
-  ngOnInit() {
+  logIt(hey){  
+    hey.forEach((h) => {
+      this.todos.push(h)
+    })
+  }
+
+  ngOnInit(): void {
+    this.http.get('http://localhost:3000/todos').subscribe((res:Response) => this.logIt(res))
   }
 
 }
