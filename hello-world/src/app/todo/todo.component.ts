@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-todo',
@@ -12,15 +13,16 @@ export class TodoComponent implements OnInit {
   todos = []
   striked = ''
 
-  onSubmitTodo($event){
+  onSubmitTodo($event, f: NgForm){
   	$event.preventDefault();
+
+  	f.resetForm()
   }
 
   onDelete(todoId){
-  	let todoIds = this.todos.map((todo) => {
+  	this.todos.splice(this.todos.map((todo) => {
   		return todo.id
-  	});
-  	this.todos.splice(todoIds.indexOf(todoId), 1);
+  	}).indexOf(todoId), 1);
   }
 
   onStrikeThrough($event){

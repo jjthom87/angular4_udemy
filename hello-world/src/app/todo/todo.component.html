@@ -1,4 +1,4 @@
-<form (submit)="onSubmitTodo($event)">
+<form #f="ngForm" (submit)="onSubmitTodo($event, f)">
 	<label>ToDo Input</label><br>
 	<input 
 		ngModel
@@ -11,8 +11,8 @@
 	<input class="btn btn-primary" type="submit"/>
 </form>
 <ul class="well">
-	<li *ngFor="let todo of todos">
-		<span (click)="onStrikeThrough($event)">{{todo.id}}: {{todo.todo}}</span>
+	<li *ngFor="let todo of todos; let i = index">
+		<span (click)="onStrikeThrough($event)">{{i + 1}}: {{todo.todo}}</span>
 		<button class="btn btn-danger" (click)="onDelete(todo.id)">x</button>
 	</li>
 
