@@ -1,3 +1,4 @@
+import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,19 +10,21 @@ import { AuthorsComponent } from './authors/authors.component';
 
 import { CoursesService } from './courses.service';
 import { AuthorsService } from './authors.service';
+import { TodoComponent } from './todo/todo.component';
 
+import { AppRouter } from './app.routing';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
     CourseComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    TodoComponent
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, AppRouter],
   providers: [CoursesService, AuthorsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports : [RouterModule]
 })
 export class AppModule { }
