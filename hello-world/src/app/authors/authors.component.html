@@ -1,4 +1,26 @@
 <h1>{{title}}</h1>
-<ul>
+<h1 [textContent]="title"></h1>
+<ul class="well">
 	<li *ngFor="let author of authors">{{author}}</li>
+	<img style="height: 100px; width: auto;" src={{image_url}}/>
+	<img style="height: 100px; width: auto;" [src]="image_url"/>
 </ul>
+<button 
+	(click)="onSave($event)"
+	class="btn btn-info" 
+	[class.active]="isActive"
+	[style.backgroundColor]="isActive ? 'green' : 'purple'"
+>
+	Hey
+</button>
+<input (keyup)="onKeyUp($event)"/>
+<p>{{keyUpText}}</p>
+<table class="table">
+	<tr>
+		<td [attr.colspan]="colSpan"></td>
+	</tr>
+</table>
+<input (keyup.enter)="onKeyUpEnter($event)"/>
+<p>{{keyUpEnterText ? keyUpEnterText : N/A}}</p>
+<input #whatever (keyup.enter)="onEnterThis(whatever.value)"/>
+<p>{{enterThisText ? enterThisText : N/A}}</p>
