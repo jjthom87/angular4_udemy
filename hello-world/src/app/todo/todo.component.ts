@@ -19,31 +19,50 @@ export class TodoComponent implements OnInit {
   onSubmitTodo($event, f: NgForm){
   	$event.preventDefault();
 
-  	f.resetForm()
+    //this.todos.push({id: this.todos.length + 1, message:f.value.todo})
+    if(f.value.todo !== ""){
+      this.http.post('http://localhost:3000/api/create-todo', {
+        message: f.value.todo
+      }).subscribe(
+        res => {
+          this.repopulateTodos(res)
+          f.resetForm()
+        },
+        err => {
+          console.log("Error occured");
+        }
+      );
+    } else {
+      alert("Please enter message")
+    }
   }
 
   onDelete(todoId){
-  	this.todos.splice(this.todos.map((todo) => {
-  		return todo.id
-  	}).indexOf(todoId), 1);
+  	// this.todos.splice(this.todos.map((todo) => {
+  	// 	return todo.id
+  	// }).indexOf(todoId), 1);
+    this.http.delete('http://localhost:3000/api/delete-todo/' + todoId).subscribe(res => this.repopulateTodos(res))
   }
 
   onStrikeThrough($event){
   	$event.target.style.textDecoration = 'line-through'
   }
 
-  log(todo){
-  	this.todos.push({id: this.todos.length + 1, message:todo.value})
+  populateTodos(todos){  
+    todos.forEach((todo) => {
+      this.todos.push(todo)
+    })
   }
 
-  logIt(hey){  
-    hey.forEach((h) => {
-      this.todos.push(h)
+  repopulateTodos(todos){
+    this.todos = [];
+    todos.forEach((todo) => {
+      this.todos.push(todo)
     })
   }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/todos').subscribe((res:Response) => this.logIt(res))
+    this.http.get('http://localhost:3000/api/todos').subscribe((res:Response) => this.populateTodos(res))
   }
 
 }
